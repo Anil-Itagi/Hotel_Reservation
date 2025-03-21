@@ -26,7 +26,7 @@ public class Hotel_res {
                 System.out.println("2. View Reservations");
                 System.out.println("3. Get Room Number");
                 System.out.println("4. Update Reservations");
-                System.out.println("6. Delete Reservation");
+                System.out.println("5. Delete Reservation");
                 System.out.println("0. Exit");
                 System.out.print("Choose an option : ");
                 int choice = sc.nextInt();
@@ -36,21 +36,39 @@ public class Hotel_res {
                         break;
                     case 2:
                         viewReservation(conn);
-                
-                    default:
                         break;
+
+                    case 3:
+                        getRoomNumber(conn, sc);
+                        break;
+                    case 4:
+                        updateReservation(conn, sc);
+                        break;
+
+                    case 5:
+                        deleteReservation(conn, sc);
+                        break;
+                    
+                    case 0:
+                        exit();
+                        sc.close();
+                        return;
+        
+                    default:
+                        System.out.println("Invalid choice . Try again.");
                 }
 				
 			}
 			
-			System.out.println("connection closed");
+			// System.out.println("connection closed");
 			
 		}
-		catch(Exception e) {
-			
-			e.printStackTrace();
-		}
-
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 		
 	}
 
